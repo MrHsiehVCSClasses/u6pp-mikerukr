@@ -30,5 +30,54 @@ public class Card {
         DRAW_2, REVERSE, SKIP, WILD, WILD_DRAW_4};
 
     // start you code here
+    String c;
+    String v;
+    Card(String color, String value){
+        c = color;
+        v = value;
+    }
+    String getColor(){
+        return c;
+    }
+    String getValue(){
+        return v;
+    }
+    boolean trySetColor(String color){
+        boolean check = false;
+        for (String c:COLORS){
+            if ((c.equals(color))){
+        check=true;
+            }
+        }
+        if (check==false){
+            System.out.println("not a color");
+            return false;
+        }
+        if (color.equals(WILD) || color==null){
+            System.out.println("color is a wild or null");
+            return false;
+        }
+        if (c.equals(WILD)){
+            c= color;
+            System.out.println("color has been changed");
+            return true;
+        }
+        else{
+            System.out.println("false");
+            return false;
+        }
+    }
 
+    Boolean canPlayOn(Card input){
+        if (input == null){
+            return false;
+        }
+        if (c.equals(WILD)){
+            return true;
+        }
+        if (input.getColor().equals(c)||input.getValue().equals(v)){
+            return true;
+        }
+        return false;
+}
 }
